@@ -72,7 +72,7 @@ cmake --build build --config Release -j$(nproc)
 
 ## Architecture notes
 
-- **CPU**: 6 P-cores (4.8-5.1 GHz) + 8 E-cores (2.5-3.8 GHz) + 2 LP E-cores. No AMX. Has AVX-VNNI for INT8 acceleration. Pin PyTorch to P-cores with `torch.set_num_threads(8)` or `taskset -c 0-11`.
+- **CPU**: 6 P-cores (4.8-5.1 GHz) + 8 E-cores (2.5-3.8 GHz) + 2 LP E-cores. No AMX (datacenter-only). Has AVX-VNNI for INT8 acceleration. **bfloat16 is extremely slow** — use float32 or INT8 instead. Pin PyTorch to P-cores with `torch.set_num_threads(8)` or `taskset -c 0-11`.
 
 - **GPU (Arc)**: Integrated GPU sharing system RAM (48 GB max). Access via OpenVINO GPU plugin or llama.cpp Vulkan backend.
 
